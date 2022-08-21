@@ -1,3 +1,4 @@
+// A websocket that allows one to manipulate redis instances
 package main
 
 import (
@@ -130,6 +131,7 @@ func redisServer(ctx context.Context, rdb *redis.Client, connection netpoll.Conn
 					return err
 				}
 			default:
+				log.Printf("[WARNING]: Unkown command  %s \n", command)
 				// Not one of the two commands
 				resp := ws.NewTextFrame([]byte("Unknown command, supported commands are GET key and SET key value"))
 
